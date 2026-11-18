@@ -12,3 +12,7 @@
  * Requires PHP:      8.2
  * Author:            Anouar-Anthony Tel
  */
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
