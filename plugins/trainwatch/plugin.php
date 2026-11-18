@@ -2,7 +2,7 @@
 /**
  * Train Watch
  *
- * @package           PluginPackage
+ * @package           TrainWatch
  * @author            Anouar-Anthony Tel
  *
  * @wordpress-plugin
