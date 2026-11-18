@@ -16,3 +16,5 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
+
+add_menu_page( 'admin_menu', 'my_custom_admin_menu' );
