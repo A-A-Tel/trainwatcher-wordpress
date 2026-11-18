@@ -1,6 +1,6 @@
 services:
   db:
-    image: mysql:5.7
+    image: mariadb:latest
     container_name: wordpress_db
     restart: always
     environment:
@@ -12,12 +12,19 @@ services:
       - db_data:/var/lib/mysql
     networks:
       - wp_network
+    healthcheck:
+      test: [ "CMD", "mariadb", "-u", "${DB_USER}", "-p${DB_PASS}", "-e", "SELECT 1" ]
+      interval: 1s
+      timeout: 5s
+      retries: 15
+
   wordpress:
     image: wordpress:latest
     container_name: wordpress_app
     restart: always
     depends_on:
-      - db
+      db:
+        condition: service_healthy
     ports:
       - "8080:80"
     environment:
@@ -29,8 +36,10 @@ services:
       - wp_data:/var/www/html
     networks:
       - wp_network
+
 volumes:
   db_data:
   wp_data:
+
 networks:
   wp_network:
