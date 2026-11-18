@@ -13,7 +13,7 @@ services:
     networks:
       - wp_network
     healthcheck:
-      test: [ "CMD", "mariadb", "-u", "${DB_USER}", "-p${DB_PASS}", "-e", "SELECT 1" ]
+      test: [ "CMD", "mariadb", "-u", "wp_user", "-pwp_pass", "-e", "SELECT 1" ]
       interval: 1s
       timeout: 5s
       retries: 15
@@ -34,6 +34,7 @@ services:
       WORDPRESS_DB_NAME: wordpress
     volumes:
       - wp_data:/var/www/html
+      - ./plugins/trainwatch:/var/www/html/wp-content/plugins/trainwatch
     networks:
       - wp_network
 
